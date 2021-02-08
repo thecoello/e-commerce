@@ -1,5 +1,6 @@
 import express = require("express")
 import bodyParser = require("body-parser")
+require('./config/DDBB/mongooseImpl')
 
 /**************************
 Connection for the server 
