@@ -1,14 +1,14 @@
 import mongoose = require('mongoose');
 
 const ProductSchema = new mongoose.Schema({
-    product: {
-        type: Object,
-        required: [true, "the product it's required"]
+    name: {
+        type: String,
+        required: [true, "the name for the product it's required"]
     },
-    note: {
+    description: {
         type: String,
     },
-    addres: {
+    price: {
         type: String,
         required: [true, "The price for the product it's required"]
     },
@@ -16,9 +16,9 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: [true, "The category for the product it's required"],
     },
-    role: {
+    seller: {
         type: String,
-        required: [true, "The role for the shop it's required"],
+        required: [true, "The seller for the product it's required"],
     }
 });
 
