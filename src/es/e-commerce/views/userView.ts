@@ -20,7 +20,7 @@ router.put('/user/update',UserControllers.Update);
 
 /**************************
 Delete user
- **************************
+ **************************/
 router.delete('/user/delete',UserControllers.Delete);
 
 /**************************
