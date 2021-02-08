@@ -25,7 +25,7 @@ router.delete('/user/delete',UserControllers.Delete);
 
 /**************************
  Logging user
- **************************
-router.post('/login',UserControllers.Login)*/
+ **************************/
+router.post('/login',UserControllers.Login)
 
 export = router;
