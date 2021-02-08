@@ -6,6 +6,10 @@ class UserControllers  {
         const Post = await new UserCrud()
         await Post.Create(User, req, res, "User Registered");
     }
+    static async Get(req, res) {
+        const Post = await new UserCrud()
+        await Post.Read(User, req, res, "User Founded");
+    }
 }
 
 export = UserControllers;
