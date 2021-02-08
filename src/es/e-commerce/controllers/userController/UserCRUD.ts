@@ -20,7 +20,7 @@ export class UserCrud extends ControllerCrud {
             return await res.send({ message: msg, object: createUser });
 
         } catch (error) {
-            console.log(error)
+            return ErrorCatch.errorReturn(error, res, 'There was a problem creating the user')
         }
     }
 
