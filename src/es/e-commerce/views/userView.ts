@@ -15,7 +15,7 @@ router.get('/user',UserControllers.Get)
 
 /**************************
 Update user
- **************************
+ **************************/
 router.put('/user/update',UserControllers.Update);
 
 /**************************
