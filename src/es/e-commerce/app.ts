@@ -20,5 +20,4 @@ app.use(bodyParser.json())
 /**************************
 Call for the routers
 **************************/
-
-
+require('./Views/Views Router/RouterImpl')
