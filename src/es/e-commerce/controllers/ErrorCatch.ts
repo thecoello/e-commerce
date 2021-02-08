@@ -9,7 +9,7 @@ export class ErrorCatch {
             }
         }
 
-        return await res.status(500).send({ message: message, error: error.message})
+        return await res.status(500).send({ message: message, error: error})
 
     }
 }
