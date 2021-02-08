@@ -15,6 +15,10 @@ class UserControllers  {
         const Post = await new UserCrud()
         await Post.Read(User, req, res, "User Founded");
     }
+    static async Update(req, res) {
+        const Post = await new UserCrud()
+        await Post.Update(User, req, res, "User Updated");
+    }
 }
 
 export = UserControllers;
