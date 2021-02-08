@@ -19,6 +19,10 @@ class UserControllers  {
         const Post = await new UserCrud()
         await Post.Update(User, req, res, "User Updated");
     }
+    static async Delete(req, res) {
+        const Post = await new UserCrud()
+        await Post.Delete(User, req, res, "User Deleted");
+    }
 }
 
 export = UserControllers;
