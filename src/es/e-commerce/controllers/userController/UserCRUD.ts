@@ -1,6 +1,7 @@
 import { DBDataCrud } from "../../DB crud/DBDataCrud";
 import { ControllerCrud } from "../ControllerCrud";
 import { ErrorCatch } from "../ErrorCatch";
+import { TokenAction } from "../MWS/TokenAction";
 
 export class UserCrud extends ControllerCrud {
 
@@ -25,7 +26,19 @@ export class UserCrud extends ControllerCrud {
     }
 
     async Read(param:any,req:any,res:any,msg:string) {
-       
+        try {
+            const user = await this.CRUD.find(param,req,res,{ email: req.body.email })
+            
+            if(!user[0]){
+                res.end('this user exist');
+            }
+
+            return await res.send({ message: msg, object: user[0] });
+         
+
+        } catch (error) {
+            return ErrorCatch.errorReturn(error, res, 'There was a problem creating the user')
+        }
     }
 
     async Update(param:any,req:any,res:any,msg:string) {
