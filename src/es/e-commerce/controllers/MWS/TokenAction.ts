@@ -10,7 +10,7 @@ export class TokenAction {
             return true
         }
 
-        throw 'Token does not match'
+        throw 'Token does not match or you are not logged'
     }
 
     static decode(req){
