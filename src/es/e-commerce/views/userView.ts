@@ -10,7 +10,7 @@ router.post('/user/register',UserControllers.Create);
 
 /**************************
 Get user
-**************************
+**************************/
 router.get('/user',UserControllers.Get)
 
 /**************************
