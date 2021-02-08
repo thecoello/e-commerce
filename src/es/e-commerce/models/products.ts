@@ -9,7 +9,7 @@ const ProductSchema = new mongoose.Schema({
         type: String,
     },
     price: {
-        type: String,
+        type: Number,
         required: [true, "The price for the product it's required"]
     },
     category: {
@@ -21,6 +21,12 @@ const ProductSchema = new mongoose.Schema({
         required: [true, "The seller for the product it's required"],
     }
 });
+
+ProductSchema.methods.toJSON = (function(){
+    const documents = this.toObject()
+    delete documents['seller']
+    return documents
+})
 
 const Product = mongoose.model('Products', ProductSchema);
 export = Product;
