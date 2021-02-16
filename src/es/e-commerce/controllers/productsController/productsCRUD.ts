@@ -31,12 +31,11 @@ export class ProductsCrud extends ControllerCrud {
                     const product = await this.CRUD.create(param, req, res, req.body)
                     return await res.send({ message: msg, object: product });
                 } else if (productExist[0]["seller"] == userId) {
-                    return res.status(401).end('You have this product registered already');
+                    return res.status(401).end('You have this product registered');
                 }
             }
 
         } catch (error) {
-            console.log(error)
             return ErrorCatch.errorReturn(error, res, 'There was a problem creating the product')
         }
     }
