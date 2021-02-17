@@ -13,7 +13,6 @@ export class UserCrud extends ControllerCrud {
         try {
             const user = await this.CRUD.find(param, req, res, { email: req.body.email })
 
-
             if (user[0]) {
                 return res.status(409).end('Email already Exist');
             }

@@ -59,7 +59,7 @@ export class purchaseCrud extends ControllerCrud {
             return await res.send({ message: msg, client: clientAndOrder, order: order[0] });
 
         } catch (error) {
-            return ErrorCatch.errorReturn(error, res, 'There was a problem creating the product')
+            return ErrorCatch.errorReturn(error, res, 'There was a problem creating the purchase')
         }
     }
 
@@ -82,12 +82,12 @@ export class purchaseCrud extends ControllerCrud {
                 }
 
                 const invoices = await InvoiceCreate.InvoiceRead(purchases)
-                return await res.send({ invoices: invoices });
+                return await res.send({ message: msg, invoices: invoices });
 
             }
 
         } catch (error) {
-            return ErrorCatch.errorReturn(error, res, 'There was a problem getting the user')
+            return ErrorCatch.errorReturn(error, res, 'There was a problem reading the purchase')
         }
     }
 
@@ -110,11 +110,11 @@ export class purchaseCrud extends ControllerCrud {
                 }
 
                 const invoices = await InvoiceCreate.InvoiceRead(purchases)
-                return await res.send({ invoices: invoices });
+                return await res.send({message: msg, invoices: invoices });
             }
 
         } catch (error) {
-            return ErrorCatch.errorReturn(error, res, 'There was a problem getting the user')
+            return ErrorCatch.errorReturn(error, res, 'There was a problem reading the purchase')
         }
     }
 
@@ -151,11 +151,11 @@ export class purchaseCrud extends ControllerCrud {
                     }
                 })
 
-                return await res.send({ invoice: finalInvoice });
+                return await res.send({ message: msg, invoice: finalInvoice });
             }
 
         } catch (error) {
-            return ErrorCatch.errorReturn(error, res, 'There was a problem getting the user')
+            return ErrorCatch.errorReturn(error, res, 'There was a problem reading the Bill')
         }
     }
 
@@ -221,7 +221,7 @@ export class purchaseCrud extends ControllerCrud {
             }
 
         } catch (error) {
-            return ErrorCatch.errorReturn(error, res, 'There was a problem updating the product')
+            return ErrorCatch.errorReturn(error, res, 'There was a problem updating the purchase')
         }
     }
 
@@ -271,7 +271,7 @@ export class purchaseCrud extends ControllerCrud {
             }
 
         } catch (error) {
-            return ErrorCatch.errorReturn(error, res, 'There was a problem deleting the user')
+            return ErrorCatch.errorReturn(error, res, 'There was a problem deleting the purchase')
         }
     }
 

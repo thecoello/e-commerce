@@ -62,7 +62,7 @@ export class ProductsCrud extends ControllerCrud {
             }
 
         } catch (error) {
-            return ErrorCatch.errorReturn(error, res, 'There was a problem getting the user')
+            return ErrorCatch.errorReturn(error, res, 'There was a problem getting the products')
         }
     }
 
@@ -78,7 +78,7 @@ export class ProductsCrud extends ControllerCrud {
             return await res.send({ message: msg, object: products });
 
         } catch (error) {
-            return ErrorCatch.errorReturn(error, res, 'There was a problem getting the user')
+            return ErrorCatch.errorReturn(error, res, 'There was a problem getting the products')
         }
     }
 
@@ -94,7 +94,7 @@ export class ProductsCrud extends ControllerCrud {
             return await res.send({ message: msg, object: products });
 
         } catch (error) {
-            return ErrorCatch.errorReturn(error, res, 'There was a problem getting the user')
+            return ErrorCatch.errorReturn(error, res, 'There was a problem getting the products')
         }
     }
 
@@ -171,51 +171,57 @@ export class ProductsCrud extends ControllerCrud {
             if (req.query.filter == 'bestseller') {
                 const invoices = await findDatabase.find("ecommerce", "invoices", {})
 
-                const productAndQuantity = []
-                const products = []
-                const productCount = {}
-                const product = []
+                if(invoices[0]){
 
-                invoices.map(invoice => {
-                    invoice.products.map(product => {
-                        productAndQuantity.push([product.name, product.quantity])
+                    const productAndQuantity = []
+                    const products = []
+                    const productCount = {}
+                    const product = []
+    
+                    invoices.map(invoice => {
+                        invoice.products.map(product => {
+                            productAndQuantity.push([product.name, product.quantity])
+                        })
                     })
-                })
-
-                for (const product of productAndQuantity) {
-                    while (product[1] !== 0) {
-                        products.push(product[0])
-                        product[1]--
+    
+                    for (const product of productAndQuantity) {
+                        while (product[1] !== 0) {
+                            products.push(product[0])
+                            product[1]--
+                        }
                     }
+    
+                    for (const product of products) {
+                        productCount[product] = (productCount[product]||0)+1
+                    }
+    
+                    for (const productAndQ in productCount) {
+                        product.push([productAndQ, productCount[productAndQ]])
+                    }
+    
+                    product.sort(function (a, b) {
+                        return b[1] - a[1]
+                    })
+    
+                    const bestSellerProducts = []
+    
+                    for (const findProduct of product) {
+                        const products = await this.CRUD.find(param, req, res, {name: findProduct[0]})
+                        bestSellerProducts.push(products)
+                    }
+    
+                    productFiltered = bestSellerProducts
+                    
                 }
 
-                for (const product of products) {
-                    productCount[product] = (productCount[product]||0)+1
-                }
+                return await res.status(409).end('There is not products sold, try filtering by title or price');
 
-                for (const productAndQ in productCount) {
-                    product.push([productAndQ, productCount[productAndQ]])
-                }
-
-                product.sort(function (a, b) {
-                    return b[1] - a[1]
-                })
-
-                const bestSellerProducts = []
-
-                for (const findProduct of product) {
-                    const products = await this.CRUD.find(param, req, res, {name: findProduct[0]})
-                    bestSellerProducts.push(products)
-                }
-
-                productFiltered = bestSellerProducts
-                
             }
 
             return await res.send({ message: msg, object: productFiltered });
 
         } catch (error) {
-            return ErrorCatch.errorReturn(error, res, 'There was a problem getting the user')
+            return ErrorCatch.errorReturn(error, res, 'There was a problem getting the products')
         }
     }
 
@@ -274,7 +280,7 @@ export class ProductsCrud extends ControllerCrud {
 
 
         } catch (error) {
-            return ErrorCatch.errorReturn(error, res, 'There was a problem deleting the user')
+            return ErrorCatch.errorReturn(error, res, 'There was a problem deleting the product')
         }
     }
 
