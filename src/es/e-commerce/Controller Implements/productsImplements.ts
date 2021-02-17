@@ -18,6 +18,10 @@ class ProductsControllers  {
         const Post = await new ProductsCrud()
         await Post.ReadPublicbyCategory(Product, req, res, "Products Founded");
     }
+    static async GetPublicByfilter(req, res) {
+        const Post = await new ProductsCrud()
+        await Post.ReadPublicbyfilter(Product, req, res, "Products Founded");
+    }
     static async Update(req, res) {
         const Post = await new ProductsCrud()
         await Post.Update(Product, req, res, "Product Updated");

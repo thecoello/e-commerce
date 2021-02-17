@@ -24,6 +24,11 @@ Get products by category
 router.get('/product/category/',ProductsControllers.GetPublicByCategory)
 
 /**************************
+Get products by category
+**************************/
+router.get('/product/filter/',ProductsControllers.GetPublicByfilter)
+
+/**************************
 Update product
  **************************/
 router.put('/product/update',ProductsControllers.Update);
