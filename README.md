@@ -7,6 +7,24 @@ necesario estár logado para poder realizar la compra, los productos se pueden c
 de manera pública al igual que los filtros. 
 ```
 
+## Línea de comandos
+```
+Conexión a mongo: localhost:27017
+Con docker: docker-compose up (Crea una conexión en contenedor en el puerto localhost:27017)
+
+-Instalar dependencias:
+npm install
+
+-Inciar servidor y conexión a base de datos:
+npm start
+
+Importar y correr las colecciones adjuntada al repositorio en la carpeta (colección Postman):
+Es importante correr la colección en el order que está generado, ya que por uso de 
+token puede que algunas funciones si el usuario no está logado o si el usuario erroneo
+no está logado.
+
+```
+
 ## Información
 ```
 Usuario:
@@ -31,22 +49,5 @@ almacena un número correlativo de factura, productos, id de cliente y fecha, ad
 ID que es generado por mongo
 ```
 
-## Línea de comandos
-```
-Conexión a mongo: localhost:27017
-Con docker: docker-compose up (Crea una conexión en contenedor en el puerto localhost:27017)
-
--Instalar dependencias:
-npm install
-
--Inciar servidor y conexión a base de datos:
-npm start
-
-importar y correr las colecciones adjuntada al repositorio en la carpeta (colección Postman):
-Es importante correr la colección en el order que está generado, ya que por uso de 
-token puede que algunas funciones si el usuario no está logado o si el usuario erroneo
-no está logado.
-
-```
 
 
