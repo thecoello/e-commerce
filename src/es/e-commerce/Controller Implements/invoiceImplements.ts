@@ -18,9 +18,16 @@ export class InvoiceCreate {
             productClient.push(productClient)
         }
 
+        const date = new Date()
+        const day = date.getDate()
+        const month = date.getMonth()+1
+        const year = date.getFullYear()
+    
+
+
         const invoiceModel = await {
             products: product,
-            date: Date.now(),
+            date: day+"/"+month+"/"+year,
             invoiceNumber: invoiceNum,
             client: clientID
         }
