@@ -242,12 +242,13 @@ export class purchaseCrud extends ControllerCrud {
                     return res.status(409).send({ message: 'Invoice Number it is Required' });
                 }
 
-                const invoice = await findDatabase.findAndDelete("ecommerce", "invoices", { invoiceNumber: parseInt(req.query.invoiceNumber) })
+                const invoiceExist = await findDatabase.find("ecommerce", "invoices", { invoiceNumber: parseInt(req.query.invoiceNumber) })
 
-                if (!invoice[0]) {
+                if (!invoiceExist[0]) {
                     return res.status(409).send({ message: 'Invoice does not exist' });
                 }
 
+                const invoice = await findDatabase.findAndDelete("ecommerce", "invoices", { invoiceNumber: parseInt(req.query.invoiceNumber) })
                 const purchase = await this.CRUD.find(param, req, res, { _id: ObjectId(invoice.value.client) })
 
                 const client = purchase.map(async (purchase) => {
@@ -259,14 +260,14 @@ export class purchaseCrud extends ControllerCrud {
                     }
 
                     if (!newOrders[0]) {
-                        this.CRUD.delete(param, req, res, { _id: ObjectId(invoice.value.client) })
+                        this.CRUD.delete(param, req, res, { _id: ObjectId(purchase._id) })
                     }
 
                     purchase.orders = newOrders
-                    return await this.CRUD.update(param, purchase, res, { _id: ObjectId(invoice.value.client) })
+                    return await this.CRUD.update(param, purchase, res, { _id: ObjectId(purchase._id) })
                 })
 
-                return await res.send({ message: msg, client: client, order: invoice.value });
+                return await res.send({ message: msg, client: purchase[0], order: invoice.value });
 
             }
 
