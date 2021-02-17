@@ -27,7 +27,7 @@ export class UserCrud extends ControllerCrud {
 
     async Read(param: any, req: any, res: any, msg: string) {
         try {
-            const user = await this.CRUD.find(param, req, res, { email: req.body.email })
+            const user = await this.CRUD.find(param, req, res, { email: req.query.email })
 
             if (!user[0]) {
                 return res.status(404).end('This user does not Exist');
