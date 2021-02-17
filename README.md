@@ -34,14 +34,16 @@ Producto:
 El registro, actualización, lectura por vendedor y eliminación de producto solo se puede realizar
 si el usuario está logado. 
 
-Compra: La compra, como se comenta anteriormente se realizar como usuario invitado, además de los
+Compra:
+La compra, como se comenta anteriormente se realizar como usuario invitado, además de los
 datos del usuario para realizar la compra se requiren los productos a comprar, para ello se pasan
 los productos como arrays en donde la primera posición del array es el nombre del producto a 
 comprar y la segunda posición es la cantidad. Por cada compra se descuenta el stock en la abse de 
 datos del producto, cuando un producto está a 0 no se realizar la compra hasta que dicho producto
 no se retire de la compra.
 
-Factura: Al momento de realizar la compra se genera una factura en base de datos, el ID de dicha
+Factura:
+Al momento de realizar la compra se genera una factura en base de datos, el ID de dicha
 factura se almacena en la colección de base de datos (purchase) que es en donde se encuentran los
 datos del usuario, el usuario se genera y por cada compra que haga, el ID de la factura 
 "Orden de compra" se almacena en el usuario como un array de ordenes. La base de datos de factura 
